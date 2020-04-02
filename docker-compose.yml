@@ -10,8 +10,6 @@ services:
     build:
       dockerfile: Dockerfile.dev
       context: ./server
-    ports:
-      - '5000:5000'
     volumes:
       - /app/node_modules
       - ./server:/app
@@ -23,3 +21,17 @@ services:
       - PGDATABASE=postgres
       - PGPASSWORD=postgres_password
       - PGPORT=5432
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+  worker:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./worker
+    volumes:
+      - /app/node_modules
+      - ./worker:/app
