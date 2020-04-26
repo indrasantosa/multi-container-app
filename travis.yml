@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t indrasantosa/react-test -f ./client/Dockerfile.dev
+
+script:
+  - docker run indrasantosa/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t indrasantosa/multi-client ./client
+  - docker build -t indrasantosa/multi-nginx ./nginx
+  - docker build -t indrasantosa/multi-server ./server
+  - docker build -t indrasantosa/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push indrasantosa/multi-client
+  - docker push indrasantosa/multi-nginx
+  - docker push indrasantosa/multi-server
+  - docker push indrasantosa/multi-worker
