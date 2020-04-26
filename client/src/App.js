@@ -10,7 +10,7 @@ function App() {
     <Router>
       <div className='App'>
         <Link to={'/'}>Home</Link>
-        <Link to={'/otherpage'}>Other Page</Link>
+        <Link to={'/otherpage'}>Other Pagests</Link>
         <Route exact path={'/'} component={Fib} />
         <Route path={'/otherpage'} component={OtherPage} />
       </div>
