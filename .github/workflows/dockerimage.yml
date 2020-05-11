@@ -20,5 +20,5 @@ jobs:
         name: indrasantosa/multi-server
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        dockerfile: ./client/Dockerfile
+        dockerfile: ./server/Dockerfile
         context: ./server
