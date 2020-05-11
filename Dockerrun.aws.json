@@ -1,0 +1,36 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefintions": [
+    {
+      "name": "multi-client",
+      "image": "indrasantosa/multi-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "multi-server",
+      "image": "indrasantosa/multi-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "multi-worker",
+      "image": "indrasantosa/multi-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "multi-nginx",
+      "image": "indrasantosa/multi-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["multi-client", "multi-server"]
+    }
+  ]
+}
