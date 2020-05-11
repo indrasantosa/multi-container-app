@@ -17,8 +17,8 @@ jobs:
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: indrasantosa/multi-client
+        name: indrasantosa/multi-server
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         dockerfile: ./client/Dockerfile
-        context: ./client
+        context: ./server
